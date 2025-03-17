@@ -1,5 +1,5 @@
 import { grpc } from "google-gax";
-import { UserRefreshClient } from "google-auth-library";
+import { UserRefreshClient, Compute } from "google-auth-library";
 import { ClientOptions } from "./client";
 import {
   AllServices,
@@ -80,11 +80,11 @@ export class Service {
 
   private getCredentials(): grpc.ChannelCredentials {
     const sslCreds = grpc.credentials.createSsl();
-    const authClient = new UserRefreshClient(
+    const authClient = this.customerOptions.refresh_token ? new UserRefreshClient(
       this.clientOptions.client_id,
       this.clientOptions.client_secret,
       this.customerOptions.refresh_token
-    );
+    ) : new Compute();
     const credentials = grpc.credentials.combineChannelCredentials(
       sslCreds,
       grpc.credentials.createFromGoogleCredential(authClient)

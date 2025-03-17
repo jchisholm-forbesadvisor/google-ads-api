@@ -2,7 +2,7 @@ import { services, fields } from "./protos";
 
 export interface CustomerOptions {
   customer_id: string;
-  refresh_token: string;
+  refresh_token?: string;
   login_customer_id?: string;
   linked_customer_id?: string;
 }
