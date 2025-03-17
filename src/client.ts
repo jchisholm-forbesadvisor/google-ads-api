@@ -5,8 +5,8 @@ import { services } from "./protos";
 import { Service } from "./service";
 
 export interface ClientOptions {
-  client_id: string;
-  client_secret: string;
+  client_id?: string;
+  client_secret?: string;
   developer_token: string;
   disable_parsing?: boolean;
 }
